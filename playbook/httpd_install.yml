@@ -1,0 +1,20 @@
+---
+- name: create httpd hosts
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: install httpd
+      ansible.builtin.dnf:
+        name: httpd
+        state: latest
+
+    - name: start httpd service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: copy default html file
+      ansible.builtin.template:
+        src: index.html.j2
+        dest: /var/www/html/index.html
