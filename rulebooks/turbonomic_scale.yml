@@ -17,10 +17,14 @@
       condition: event.payload.target.className == "VirtualMachine" and event.payload.actionType == "SCALE" and
         event.payload.target.environmentType == "CLOUD" and event.payload.target.discoveredBy.type == "AWS"
       action:
+        run_job_template:
+          name: Demo Job Template
+          organization: Default
+#      action:
 #        run_playbook:
-        run_module:
-          name: ibm.turbonomic_eda.resize_ec2
-          extra_vars:
-            instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
-            instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
-            ec2_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
+#        run_module:
+#          name: ibm.turbonomic_eda.resize_ec2
+#          extra_vars:
+#            instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
+#            instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
+#            ec2_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
