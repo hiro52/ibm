@@ -7,12 +7,6 @@
         port: 5000
 
   rules:
-#    - name: Say Hello
-#      condition: event.payload.message == "test"
-#      action:
-#        run_job_template:
-#          name: Demo Job Template
-#          organization: Default
     - name: Run EC2 Playbook for Virtual Machine Scale Action
       condition: event.payload.target.className == "VirtualMachine" and event.payload.actionType == "SCALE" and
         event.payload.target.environmentType == "CLOUD" and event.payload.target.discoveredBy.type == "AWS"
